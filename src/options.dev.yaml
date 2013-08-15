@@ -1,0 +1,39 @@
+name: FlickPageSlide
+
+url:
+  http://example.com/
+
+root: ''
+
+meta:
+  title:
+    FlickPageSlide
+  description:
+    iOS like paging.
+  keywords: []
+  favicon_url: /img/favicon.ico
+
+ios:
+  viewport: 
+    - width=device-width
+    - initial-scale=1.0
+    - maximum-scale=1.0
+    - user-scalable=0
+  icon_url: /img/apple-touch-icon.png
+
+sns:
+  twitter:
+    sharetext:
+      iOS like paging.      
+    sharehashtag: []
+
+  facebook:
+    app_id: ''
+    sharetext:
+      iOS like paging.
+
+ogp:
+  image: 
+    url: http://example.com/img/ogp-icon.png
+    width: 300
+    height: 300
