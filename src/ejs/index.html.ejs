@@ -2,14 +2,29 @@
 <html lang="ja">
 <head>
 <% include ../../bower_components/ejs-head-modules/meta %>
-<% include ../../bower_components/ejs-head-modules/ios-meta %>
-<% include ../../bower_components/ejs-head-modules/facebook-ogp %>
 <title><%= meta.title %></title>
-<link rel="stylesheet" href="<%= root %>/css/<%= name %>.css" />
-<script src="<%= root %>/js/<%= name %>.js"></script>
+<link rel="stylesheet" href="<%= root %>/examples/css/<%= name %>.css" />
+<script src="<%= root %>/bower_components/EventEmitter/EventEmitter.js"></script>
+<script src="<%= root %>/bower_components/inherits/inherits.js"></script>
+<script src="<%= root %>/js/FlickPageSlide.js"></script>
+<script src="<%= root %>/examples/js/FlickPageSlide-example.js"></script>
 </head>
 <body>
-<h1><%= meta.title %></h1>
-<%= meta.description %>
+<h1>FlickPageSlide</h1>
+
+<h2>demo</h2>
+<div id="page-wrapper">
+<div id="pages">
+<section id="page-sample-1" class="page">
+ほげほげ
+<!-- /.page --></section>
+<section id="page-sample-2" class="page">
+もげもげ
+<!-- /.page --></section>
+<!-- /#pages --></div>
+<!-- /#page-wrapper --></div>
+
+<ul id="page-guide">
+<!-- /#page-guide --></ul>
 </body>
 </html>

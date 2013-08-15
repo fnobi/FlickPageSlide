@@ -5,6 +5,7 @@
   "dependencies": {
     "ejs-head-modules": "~0.1.0",
     "ejs-sns-modules": "~0.1.1",
-    "jquery": "~2.0.3"
+    "EventEmitter": "~1.0.0",
+    "inherits": "~0.0.1"
   }
 }

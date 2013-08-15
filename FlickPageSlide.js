@@ -1,1 +1,0 @@
-/Users/fujisawa-shin/Projects/FlickPageSlide/js/FlickPageSlide.js

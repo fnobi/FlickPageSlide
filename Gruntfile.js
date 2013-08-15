@@ -7,15 +7,22 @@ module.exports = function (grunt) {
             sass: 'src/sass',
             ejs:  'src/ejs'
         },
-        dest: {
-            js:  'js',
-            css: 'css',
-            html:  'examples',
-            img: 'img'
+        dist: {
+            js:   'js',
+            css:  'css',
+            html: '',
+            img:  'img',
+            httpPath: '/'
+        },
+        examples: {
+            js:   'examples/js',
+            css:  'examples/css',
+            html: 'examples',
+            img:  'examples/img',
+            httpPath: '/examples/'
         },
         test: 'test',
         namespaces: {
-            $: 'bower_components/jquery/jquery.js'
         }
     };
 
@@ -32,20 +39,32 @@ module.exports = function (grunt) {
     {
         grunt.loadNpmTasks('grunt-auto-deps');
         config.auto_deps = {
-            dev: {
-                scripts: ['FlickPageSlide'],
-                dest: path.dest.js,
-                loadPath: [path.src.js + '/*.js'],
-                locate: path.namespaces
+            examples: {
+                scripts: [
+                    // 'FlickPageSlide-example'
+                ],
+                dest: path.examples.js,
+                loadPath: [path.src.js + '/*.js']
+            },
+            dist: {
+                scripts: [
+                    // 'FlickPageSlide'
+                ],
+                dest: path.dist.js,
+                loadPath: [path.src.js + '/*.js']
             }
         };
 
         config.watch.js = {
             files: [path.src.js + '/*.js'],
-            tasks: ['auto_deps:dev']
+            tasks: [
+                'auto_deps:examples',
+                'auto_deps:dist'
+            ]
         };
 
-        build.push('auto_deps:dev');
+        build.push('auto_deps:examples');
+        build.push('auto_deps:dist');
     }
 
 
@@ -54,13 +73,13 @@ module.exports = function (grunt) {
         grunt.loadNpmTasks('grunt-contrib-compass');
 
         config.compass =  {
-            dev: {
+            examples: {
                 options: {
                     sassDir: path.src.sass,
-                    cssDir: path.dest.css,
-                    javascriptsDir: path.dest.js,
-                    imagesDir: path.dest.img,
-                    httpImagesPath: '../img',
+                    cssDir: path.examples.css,
+                    javascriptsDir: path.examples.js,
+                    imagesDir: path.examples.img,
+                    httpImagesPath: path.examples.httpPath + path.examples.img,
                     environment: 'development'
                 }
             }
@@ -68,10 +87,10 @@ module.exports = function (grunt) {
 
         config.watch.css = {
             files: [path.src.sass + '/*.scss', path.src.sass + '/**/*.scss'],
-            tasks: ['compass:dev']
+            tasks: ['compass:examples']
         };
 
-        build.push('compass:dev');
+        build.push('compass:examples');
     }
 
 
@@ -80,21 +99,21 @@ module.exports = function (grunt) {
         grunt.loadNpmTasks('grunt-simple-ejs');
 
         config.ejs = {
-            dev: {
+            examples: {
                 template: [path.src.ejs + '/*.ejs'],
-                dest: path.dest.html,
-                options: 'src/options.dev.yaml'
+                dest: path.examples.html,
+                options: 'src/options.examples.yaml'
             }
         };
-        build.push('ejs:dev');
+        build.push('ejs:examples');
 
         config.watch.ejs = {
             files: [
                 path.src.ejs + '/*.ejs',
                 path.src.ejs + '/**/*.ejs',
-                'src/options.dev.yaml'
+                'src/options.examples.yaml'
             ],
-            tasks: ['ejs:dev']
+            tasks: ['ejs:examples']
         };
     }
     // 
@@ -107,7 +126,7 @@ module.exports = function (grunt) {
 
         config.mocha_html =  {
             all: {
-                src   : [ path.dest.js + '/FlickPageSlide.js' ],
+                src   : [ path.dist.js + '/FlickPageSlide.js' ],
                 test  : [ path.test + '/*-test.js' ],
                 assert : 'chai'
             }
@@ -134,12 +153,18 @@ module.exports = function (grunt) {
     {
         grunt.loadNpmTasks('grunt-koko');
         config.koko = {
-            dev: {
-                openPath: path.dest.html || '/'
+            examples: {
+                openPath: path.examples.html
+            },
+            dist: {
+                openPath: path.dist.html || '/'
+            },
+            test: {
+                openPath: path.test
             }
         };
 
-        grunt.registerTask('server', ['koko:dev']);
+        grunt.registerTask('server', ['koko:examples']);
     }
 
     // release

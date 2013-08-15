@@ -1,2 +1,20 @@
 @import "compass/reset";
 
+#page-wrapper {
+    margin: 20px;
+}
+
+#pages {
+    background-color: #eeeeee;
+
+    .page {
+        height: 200px;
+    }
+
+    #page-sample-1 {
+        background-color: #ffeeee;
+    }
+    #page-sample-2 {
+        background-color: #eeffee;
+    }
+}
