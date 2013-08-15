@@ -192,7 +192,9 @@ FlickPageSlide.prototype.endSnap = function () {
 
 FlickPageSlide.prototype.updateOffset = function () {
     var translate = 'translate(' + this.offset + 'px, 0px)';
+    this.el.style['transform'] = translate;
     this.el.style['-webkit-transform'] = translate;
+    this.el.style['-moz-transform'] = translate;
 };
 
 FlickPageSlide.prototype.setPageGuide = function (index) {

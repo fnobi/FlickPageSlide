@@ -1,4 +1,5 @@
 @import "compass/reset";
+@import "compass/css3/border-radius";
 
 #page-wrapper {
     margin: 20px;
@@ -16,5 +17,28 @@
     }
     #page-sample-2 {
         background-color: #eeffee;
+    }
+}
+
+#page-guide {
+    text-align: center;
+
+    a {
+        @include border-radius(50%);
+    
+        $size: 10px;
+        $spacing: 5px;
+        $color: #cccccc;
+        $active_color: #888888;
+    
+        display: inline-block;
+        background-color: $color;
+        width: $size;
+        height: $size;
+        margin: $spacing;
+    
+        &.active {
+            background-color: $active_color;
+        }
     }
 }

@@ -63,24 +63,46 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 3, ../../src/sass/FlickPageSlide.scss */
+/* line 4, ../../src/sass/FlickPageSlide.scss */
 #page-wrapper {
   margin: 20px;
 }
 
-/* line 7, ../../src/sass/FlickPageSlide.scss */
+/* line 8, ../../src/sass/FlickPageSlide.scss */
 #pages {
   background-color: #eeeeee;
 }
-/* line 10, ../../src/sass/FlickPageSlide.scss */
+/* line 11, ../../src/sass/FlickPageSlide.scss */
 #pages .page {
   height: 200px;
 }
-/* line 14, ../../src/sass/FlickPageSlide.scss */
+/* line 15, ../../src/sass/FlickPageSlide.scss */
 #pages #page-sample-1 {
   background-color: #ffeeee;
 }
-/* line 17, ../../src/sass/FlickPageSlide.scss */
+/* line 18, ../../src/sass/FlickPageSlide.scss */
 #pages #page-sample-2 {
   background-color: #eeffee;
+}
+
+/* line 23, ../../src/sass/FlickPageSlide.scss */
+#page-guide {
+  text-align: center;
+}
+/* line 26, ../../src/sass/FlickPageSlide.scss */
+#page-guide a {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #cccccc;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+}
+/* line 40, ../../src/sass/FlickPageSlide.scss */
+#page-guide a.active {
+  background-color: #888888;
 }
