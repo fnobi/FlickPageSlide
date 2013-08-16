@@ -4,6 +4,14 @@ window.addEventListener('DOMContentLoaded', function () {
         pageGuideEl: document.getElementById('page-guide')
     });
 
+    flickPageSlide.on('swipestart', function () {
+        console.log('[swipe start]');
+    });
+
+    flickPageSlide.on('swipeend', function () {
+        console.log('[swipe end]');
+    });
+
     flickPageSlide.on('changepage', function (pageIndex) {
         console.log('[change page: %s]', pageIndex);
     });

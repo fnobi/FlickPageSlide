@@ -92,6 +92,13 @@ FlickPageSlide.prototype.initListener = function () {
     }, false);
 
     el.addEventListener('touchend', function () {
+        if (!grip) {
+            return;
+        }
+        grip = false;
+        if (self.isTap) {
+            return;
+        }
         self.endSwipe();
     });
 
@@ -112,12 +119,29 @@ FlickPageSlide.prototype.initListener = function () {
     }, false);
 
     el.addEventListener('mouseup', function () {
+        if (!grip) {
+            return;
+        }
         grip = false;
+
+        if (self.isTap) {
+            return;
+        }
+
         self.endSwipe();
     });
 
     el.addEventListener('mouseout', function () {
+        if (!grip) {
+            return;
+        }
+
         grip = false;
+
+        if (self.isTap) {
+            return;
+        }
+
         self.endSwipe();
     });
 };

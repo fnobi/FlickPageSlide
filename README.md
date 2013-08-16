@@ -45,3 +45,9 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 }, false);
 ```
+
+### event emitter
+
+ * startswipe
+ * endswipe
+ * changepage
