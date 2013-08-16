@@ -2,10 +2,12 @@
   "name": "FlickPageSlide",
   "version": "0.1.0",
   "main": "index.html",
-  "dependencies": {
-    "ejs-head-modules": "~0.1.0",
-    "ejs-sns-modules": "~0.1.1",
+  "Dependencies": {
     "EventEmitter": "~1.0.0",
     "inherits": "~0.0.1"
+  },
+  "devDependencies": {
+    "ejs-head-modules": "~0.1.0",
+    "ejs-sns-modules": "~0.1.1",
   }
 }
