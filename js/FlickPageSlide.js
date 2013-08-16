@@ -63,6 +63,7 @@ FlickPageSlide.prototype.initListener = function () {
         el = this.el,
         prev = 0,
         steps = 0,
+        grip = false,
         offsetCache;
 
     window.addEventListener('resize', function (e) {
@@ -75,12 +76,16 @@ FlickPageSlide.prototype.initListener = function () {
         if (!touch) {
             return;
         }
-
+        grip = true;
         self.startSwipe(touch);
     });
 
     el.addEventListener('touchmove', function (e) {
         e.preventDefault();
+
+        if (!grip) {
+            return;
+        }
 
         var touch = e.touches[0];
         if (!touch) {
@@ -104,7 +109,6 @@ FlickPageSlide.prototype.initListener = function () {
 
 
     // mouse events
-    var grip = false;
     el.addEventListener('mousedown', function (e) {
         self.startSwipe(e);
         grip = true;
