@@ -2,7 +2,7 @@
   "name": "FlickPageSlide",
   "version": "0.1.1",
   "main": "index.html",
-  "Dependencies": {
+  "dependencies": {
     "EventEmitter": "~1.0.0",
     "inherits": "~0.0.1"
   },
