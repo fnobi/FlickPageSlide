@@ -2,6 +2,7 @@ var FlickPageSlide = function (opts) {
     opts = opts || {};
 
     this.el = opts.el || document.createElement('div');
+    this.triggerSpeed = opts.triggerSpeed || 20;
 
     this.offset = 0;
     this.pageIndex = 0;
@@ -16,8 +17,7 @@ inherits(FlickPageSlide, EventEmitter);
 FlickPageSlide.prototype.initPages = function () {
     var el = this.el,
         pageCount = el.children.length,
-        // pageWidth = el.offsetWidth / pageCount;
-        pageWidth = el.offsetWidth;
+        pageWidth = el.parentNode.offsetWidth;
 
     el.parentNode.style.overflow = 'hidden';
 
@@ -164,7 +164,7 @@ FlickPageSlide.prototype.endSwipe = function () {
     var pageWidth = this.pageWidth,
         pageCount = this.pageCount,
         speed = (this.offset - this.offsetCache) / this.steps,
-        triggerSpeed = 20;
+        triggerSpeed = this.triggerSpeed;
 
     var pageIndex;
     if (speed > triggerSpeed) {
