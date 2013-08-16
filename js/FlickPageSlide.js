@@ -178,12 +178,16 @@ FlickPageSlide.prototype.endSwipe = function () {
     if (pageIndex > 0) { pageIndex = 0; }
     if (pageIndex <= -pageCount) { pageIndex = -(pageCount - 1); }
 
-    this.setPageGuide(-pageIndex);
+    if (pageIndex * pageWidth != this.snapTo) {
+        this.emit('changepage', -pageIndex);
+        this.setPageGuide(-pageIndex);
+    }
 
     this.pageIndex = pageIndex;
     this.snapTo = pageIndex * pageWidth;
 
     this.startSnap();
+    this.emit('swipeend');
 };
 
 FlickPageSlide.prototype.endSnap = function () {
