@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
     var flickPageSlide = new FlickPageSlide({
         el: document.getElementById('pages'),
-        pageGuideEl: document.getElementById('page-guide')
+        pageGuideElement: document.getElementById('page-guide')
     });
 
     flickPageSlide.on('swipestart', function () {

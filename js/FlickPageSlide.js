@@ -43,7 +43,7 @@ FlickPageSlide.prototype.initPageGuide = function (opts) {
     var el = this.el,
         pageCount = el.children.length;
 
-    var pageGuideEl = opts.pageGuideEl || (
+    var pageGuideElement = opts.pageGuideElement || (
         opts.pageGuideId
             ? document.getElementById(opts.pageGuideId)
             : document.createElement('div')
@@ -52,10 +52,10 @@ FlickPageSlide.prototype.initPageGuide = function (opts) {
     var guide;
     for (var i = 0; i < pageCount; i++) {
         guide = document.createElement('a');
-        pageGuideEl.appendChild(guide);
+        pageGuideElement.appendChild(guide);
     };
 
-    this.pageGuideEl = pageGuideEl;
+    this.pageGuideElement = pageGuideElement;
 };
 
 FlickPageSlide.prototype.initListener = function () {
@@ -230,14 +230,14 @@ FlickPageSlide.prototype.updateOffset = function () {
 };
 
 FlickPageSlide.prototype.setPageGuide = function (index) {
-    var pageGuideEl = this.pageGuideEl,
-        length = pageGuideEl.children.length;
+    var pageGuideElement = this.pageGuideElement,
+        length = pageGuideElement.children.length;
 
     for (var i = 0; i < length; i++) {
-        pageGuideEl.children[i].className = null;
+        pageGuideElement.children[i].className = null;
     }
 
     if (index < length) {
-        pageGuideEl.children[index].className = 'active';
+        pageGuideElement.children[index].className = 'active';
     }
 };
