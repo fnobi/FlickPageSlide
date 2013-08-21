@@ -90,6 +90,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   text-align: center;
 }
 /* line 26, ../../src/sass/FlickPageSlide.scss */
+#page-guide li {
+  display: inline-block;
+}
+/* line 30, ../../src/sass/FlickPageSlide.scss */
 #page-guide a {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -98,11 +102,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   border-radius: 50%;
   display: inline-block;
   background-color: #cccccc;
+  color: #cccccc;
   width: 10px;
   height: 10px;
   margin: 5px;
+  overflow: hidden;
+  cursor: pointer;
 }
-/* line 40, ../../src/sass/FlickPageSlide.scss */
+/* line 48, ../../src/sass/FlickPageSlide.scss */
 #page-guide a.active {
   background-color: #888888;
+  color: #888888;
 }

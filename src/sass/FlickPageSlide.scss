@@ -23,6 +23,10 @@
 #page-guide {
     text-align: center;
 
+    li {
+        display: inline-block;
+    }
+
     a {
         @include border-radius(50%);
     
@@ -33,12 +37,17 @@
     
         display: inline-block;
         background-color: $color;
+        color: $color;
         width: $size;
         height: $size;
         margin: $spacing;
+
+        overflow: hidden;
+        cursor: pointer;
     
         &.active {
             background-color: $active_color;
+            color: $active_color;
         }
     }
 }

@@ -35,24 +35,34 @@ FlickPageSlide.prototype.initPages = function () {
     this.pageWidth = pageWidth;
 
     // re-calc snapTo and offset
-    this.offset = this.snapTo = this.pageIndex * pageWidth;
+    this.offset = this.snapTo = -this.pageIndex * pageWidth;
     this.updateOffset();
 };
 
 FlickPageSlide.prototype.initPageGuide = function (opts) {
-    var el = this.el,
+    var self = this,
+        el = this.el,
         pageCount = el.children.length;
 
     var pageGuideElement = opts.pageGuideElement || (
         opts.pageGuideId
             ? document.getElementById(opts.pageGuideId)
-            : document.createElement('div')
+            : document.createElement('ul')
     );
 
-    var guide;
     for (var i = 0; i < pageCount; i++) {
-        guide = document.createElement('a');
-        pageGuideElement.appendChild(guide);
+        (function (index) {
+            var li = document.createElement('li'),
+                guide = document.createElement('a');
+            guide.innerHTML = index + 1;
+            guide.addEventListener('click', function (e) {
+                e.preventDefault();
+                self.pageJumpTo(index);
+            }, false);
+
+            li.appendChild(guide);
+            pageGuideElement.appendChild(li);
+        })(i);
     };
 
     this.pageGuideElement = pageGuideElement;
@@ -188,6 +198,13 @@ FlickPageSlide.prototype.processSwipe = function (e) {
     this.steps++;
 };
 
+FlickPageSlide.prototype.pageJumpTo = function (pageIndex) {
+    this.pageIndex = pageIndex;
+    this.snapTo = -pageIndex * this.pageWidth;
+    this.setPageGuide(pageIndex);
+    this.startSnap();
+};
+
 FlickPageSlide.prototype.endSwipe = function () {
     var pageWidth = this.pageWidth,
         pageCount = this.pageCount,
@@ -196,23 +213,23 @@ FlickPageSlide.prototype.endSwipe = function () {
 
     var pageIndex;
     if (speed > triggerSpeed) {
-        pageIndex = Math.ceil(this.offset / pageWidth);
+        pageIndex = -Math.ceil(this.offset / pageWidth);
     } else if (speed < -triggerSpeed) {
-        pageIndex = Math.floor(this.offset / pageWidth);
+        pageIndex = -Math.floor(this.offset / pageWidth);
     } else {
-        pageIndex = Math.round(this.offset / pageWidth);
+        pageIndex = -Math.round(this.offset / pageWidth);
     }
 
-    if (pageIndex > 0) { pageIndex = 0; }
-    if (pageIndex <= -pageCount) { pageIndex = -(pageCount - 1); }
+    if (pageIndex < 0) { pageIndex = 0; }
+    if (pageIndex >= pageCount) { pageIndex = pageCount - 1; }
 
-    if (pageIndex * pageWidth != this.snapTo) {
-        this.emit('changepage', -pageIndex);
-        this.setPageGuide(-pageIndex);
+    if (pageIndex * pageWidth != -this.snapTo) {
+        this.emit('changepage', pageIndex);
+        this.setPageGuide(pageIndex);
     }
 
     this.pageIndex = pageIndex;
-    this.snapTo = pageIndex * pageWidth;
+    this.snapTo = -pageIndex * pageWidth;
 
     this.startSnap();
     this.emit('swipeend');
@@ -231,13 +248,14 @@ FlickPageSlide.prototype.updateOffset = function () {
 
 FlickPageSlide.prototype.setPageGuide = function (index) {
     var pageGuideElement = this.pageGuideElement,
-        length = pageGuideElement.children.length;
+        links = pageGuideElement.getElementsByTagName('a'),
+        length = links.length;
 
     for (var i = 0; i < length; i++) {
-        pageGuideElement.children[i].className = null;
+        links[i].className = null;
     }
 
     if (index < length) {
-        pageGuideElement.children[index].className = 'active';
+        links[index].className = 'active';
     }
 };
