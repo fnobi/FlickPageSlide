@@ -26,7 +26,7 @@ FlickPageSlide.prototype.initPages = function () {
     el.style.width = (100 * pageCount) + '%';
 
     [].slice.call(el.children).forEach(function (page) {
-        page.style.float = 'left';
+        page.style.cssFloat = 'left';
         page.style.width = (100 / pageCount) + '%';
         page.style.margin = '0';
     });
